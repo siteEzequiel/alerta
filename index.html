@@ -3,215 +3,482 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Alerta EMEF Ezequiel Ruiz</title>
+<title>Alerta EMEF Ezequiel Ruiz II</title>
+
+<!-- Ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f4ff;
+  :root {
+    --azul-escuro: #0f172a;
+    --azul-principal: #1b3fa3;
+    --azul-claro: #e0e7ff;
+    --verdeclaro: #25D366;
+    --vermelho: #d62828;
+    --cinza-texto: #4b5563;
+    --bg-page: radial-gradient(circle at top, #e0f2fe 0, #eef2ff 40%, #e5e7eb 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     margin: 0;
     padding: 0;
   }
 
-  .container {
-    max-width: 380px;
-    margin: 30px auto;
+  body {
+    background: var(--bg-page);
+    min-height: 100vh;
+    padding: 16px;
+    color: var(--cinza-texto);
+  }
+
+  /* Barra superior */
+  .topbar {
+    max-width: 900px;
+    margin: 0 auto 16px auto;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.93);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 12px 25px rgba(15,23,42,0.35);
+  }
+
+  .topbar-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topbar-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .topbar-sub {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  /* Layout de colunas (em telas maiores) */
+  .layout {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+  }
+
+  @media (min-width: 820px) {
+    .layout {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: flex-start;
+    }
+  }
+
+  .card {
     background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px #b9c7ff;
+    border-radius: 18px;
+    padding: 22px 20px 20px;
+    box-shadow: 0 14px 35px rgba(15,23,42,0.12);
+    position: relative;
+    overflow: hidden;
   }
 
-  h1, h2 {
-    text-align: center;
-    color: #1b3fa3;
-    margin-bottom: 20px;
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(37,99,235,0.12), transparent 55%);
+    pointer-events: none;
   }
 
-  p {
+  .card h1, .card h2 {
+    color: var(--azul-escuro);
     margin-bottom: 10px;
-    color: #333;
+  }
+
+  .card h1 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .card h2 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .card p {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .card ul {
+    margin: 6px 0 10px 20px;
     font-size: 14px;
   }
 
-  ul {
-    margin-left: 18px;
-    font-size: 14px;
-    color: #333;
+  .logo-bloco {
+    text-align:center; 
+    margin-bottom:14px;
+    position:relative;
+    z-index:1;
   }
 
+  .logo-bloco img {
+    width: 110px; 
+    max-width: 55%;
+    border-radius: 14px; 
+    box-shadow: 0px 0px 14px rgba(148,163,253,0.75);
+    object-fit: cover;
+  }
+
+  .logo-bloco .nome-escola {
+    margin-top:10px; 
+    font-size:13px; 
+    color:var(--azul-principal);
+    font-weight:700;
+    letter-spacing: 0.03em;
+  }
+
+  .tag {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background: rgba(37,99,235,0.08);
+    color:var(--azul-principal);
+    font-size:11px;
+    padding:4px 9px;
+    border-radius:999px;
+    margin-bottom:10px;
+    font-weight: 500;
+  }
+
+  .tag i {
+    font-size: 11px;
+  }
+
+  .numero-box {
+    margin: 8px 0;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.04);
+    font-weight: 600;
+    color: var(--azul-principal);
+    font-size: 14px;
+  }
+
+  .numero-box i {
+    font-size: 14px;
+  }
+
+  /* Botão WhatsApp */
+  .whats-btn {
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-align:center;
+    background:var(--verdeclaro);
+    padding:10px 12px;
+    border-radius:12px;
+    color:white;
+    font-weight:600;
+    font-size:14px;
+    margin-top:4px;
+    box-shadow: 0 8px 18px rgba(34,197,94,0.35);
+    transform: translateY(0);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .whats-btn i {
+    font-size: 16px;
+  }
+
+  .whats-btn small {
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  .whats-btn:hover {
+    background:#1ebe5d;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(22,163,74,0.45);
+  }
+
+  .observacao {
+    margin-top:14px;
+    font-size: 12px;
+    color:#6b7280;
+  }
+
+  /* Formulário / inputs admin */
   input, textarea, button {
     width: 100%;
-    padding: 12px;
-    margin-top: 12px;
-    border-radius: 8px;
+    padding: 11px;
+    margin-top: 10px;
+    border-radius: 10px;
     border: 1px solid #d0d6f0;
-    font-size: 15px;
+    font-size: 14px;
+    outline: none;
+    position: relative;
+    z-index:1;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37,99,235,0.28);
   }
 
   button {
-    background: #1b3fa3;
+    background: var(--azul-principal);
     color: white;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 
   button:hover {
     background: #162f7a;
   }
 
+  .btn-secondary {
+    background:#6b7280;
+  }
+
+  .btn-secondary:hover {
+    background:#4b5563;
+  }
+
   .alert-btn {
-    background: #d62828;
+    background: var(--vermelho);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+
+  .alert-btn i {
+    font-size: 16px;
   }
 
   .alert-btn:hover {
-    background: #a91919;
+    background: #b01a1a;
+  }
+
+  /* Efeito de "pulso" no botão de alerta */
+  .pulse {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pulse::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background: radial-gradient(circle at center, rgba(248,250,252,0.6), transparent 55%);
+    opacity:0;
+    transform:scale(0.3);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events:none;
+  }
+
+  .pulse:active::after {
+    opacity:1;
+    transform: scale(1);
   }
 
   .hidden {
     display: none;
   }
 
-  .logo-bloco {
-    text-align:center; 
-    margin-bottom:20px;
+  .status-bar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:12px;
+    font-size:12px;
+    color:#6b7280;
+    position:relative;
+    z-index:1;
   }
 
-  .logo-bloco img {
-    width: 140px; 
-    max-width: 60%;
-    border-radius: 10px; 
-    box-shadow: 0px 0px 10px #c5cffd;
-  }
-
-  .logo-bloco .nome-escola {
-    margin-top:10px; 
-    font-size:14px; 
-    color:#1b3fa3;
-    font-weight:bold;
-  }
-
-  .tag {
-    display:inline-block;
-    background:#e0e7ff;
-    color:#1b3fa3;
-    font-size:11px;
-    padding:3px 8px;
+  .status-pill {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 9px;
     border-radius:999px;
-    margin-bottom:8px;
+    background:rgba(22,163,74,0.08);
+    color:#15803d;
+    font-size:11px;
+    font-weight:600;
+  }
+
+  .status-pill i {
+    font-size:11px;
+  }
+
+  .mini-hint {
+    font-size:11px;
+    color:#9ca3af;
   }
 </style>
 </head>
 
 <body>
 
-<!-- BLOCO PÚBLICO: ATIVE O ALERTA -->
-<div class="container">
-  <div class="logo-bloco">
-    <!-- TROCAR 'logo.png' SE PRECISAR -->
-    <img src="logo/logo.jpeg" alt="Logo da Escola">
-    <div class="nome-escola">EMEF EZEQUIEL RUIZ II</div>
+<!-- Barra superior -->
+<div class="topbar">
+  <div class="topbar-icon">
+    <i class="fa-solid fa-bullhorn"></i>
   </div>
-
-  <span class="tag">Sistema Oficial de Avisos</span>
-  <h1>Ative o Alerta da EMEF</h1>
-
-  <p>
-    Receba avisos importantes da escola diretamente no seu celular:
-  </p>
-
-  <ul>
-    <li>Comunicados urgentes</li>
-    <li>Mudanças de horário</li>
-    <li>Informações sobre aulas</li>
-    <li>Avisos sobre funcionamento da escola</li>
-  </ul>
-
-  <p><strong>Somente quem ativa o alerta recebe as mensagens oficiais.</strong></p>
-
-  <h2 style="font-size:18px; margin-top:18px;">Como ativar o alerta</h2>
-
-  <p><strong>1.</strong> Salve o número da escola no WhatsApp como <strong>“ALERTA EMEF”</strong>:</p>
-  <p style="text-align:center; font-weight:bold; color:#1b3fa3; font-size:16px;">
-    (92) 99136-4824
-  </p>
-  <!-- TROCAR AQUI EM CIMA PELO NÚMERO REAL -->
-
-  <p><strong>2.</strong> Envie uma mensagem com o texto:</p>
-  <p style="text-align:center; font-weight:bold; background:#e0e7ff; padding:6px; border-radius:8px;">
-    QUERO ALERTA
-  </p>
-
-  <p><strong>3.</strong> Você receberá o som oficial do alerta e as instruções para ativar esse som nas notificações do seu WhatsApp.</p>
-
-  <p style="margin-top:15px; font-size:13px; color:#555;">
-    🔒 Seu número será usado apenas para envio de avisos da escola. Você pode sair da lista a qualquer momento.
-  </p>
+  <div>
+    <div class="topbar-title">Sistema de Alerta Escolar • EMEF Ezequiel Ruiz II</div>
+    <div class="topbar-sub">Avisos oficiais para responsáveis, alunos e comunidade</div>
+  </div>
 </div>
 
-<!-- LOGIN ADMIN -->
-<div id="loginBox" class="container">
+<div class="layout">
+  <!-- BLOCO PÚBLICO -->
+  <div class="card">
+    <div class="logo-bloco">
+      <!-- Ajuste o caminho da logo se necessário -->
+      <img src="logo/logo.jpeg" alt="Logo da Escola">
+      <div class="nome-escola">EMEF EZEQUIEL RUIZ II</div>
+    </div>
 
-  <div class="logo-bloco">
-    <img src="logo/logo.jpeg" alt="Logo da Escola">
-    <div class="nome-escola">EMEF EZEQUIEL RUIZ II</div>
+    <span class="tag">
+      <i class="fa-solid fa-shield-halved"></i>
+      Sistema Oficial de Avisos
+    </span>
+
+    <h1><i class="fa-solid fa-bell"></i> Ative o Alerta da EMEF</h1>
+
+    <p>
+      Receba avisos importantes da escola diretamente no seu celular, de forma rápida e organizada:
+    </p>
+
+    <ul>
+      <li>Comunicados urgentes e importantes</li>
+      <li>Mudanças de horário e calendário</li>
+      <li>Informações sobre aulas e reuniões</li>
+      <li>Avisos sobre o funcionamento da escola</li>
+    </ul>
+
+    <p><strong>Somente quem ativa o alerta recebe as mensagens oficiais.</strong></p>
+
+    <h2 style="margin-top:14px;">Como ativar o alerta</h2>
+
+    <p><strong>1.</strong> Salve o número da escola no WhatsApp com o nome <strong>“ALERTA EMEF”</strong>:</p>
+
+    <div class="numero-box">
+      <i class="fa-solid fa-phone"></i>
+      (92) 99136-4824
+    </div>
+
+    <p style="margin-top:10px;"><strong>2.</strong> Toque no botão abaixo para abrir o WhatsApp já com a mensagem pronta:</p>
+
+    <!-- Botão WhatsApp -->
+    <a 
+      href="https://wa.me/5592991364824?text=QUERO%20ALERTA"
+      class="whats-btn"
+      target="_blank"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>
+        QUERO ALERTA<br/>
+        <small>Abre o WhatsApp com a mensagem pronta</small>
+      </span>
+    </a>
+
+    <p class="observacao">
+      🔒 Seu número será utilizado apenas para envio de avisos da escola.  
+      Você pode solicitar a remoção da lista de transmissão a qualquer momento.
+    </p>
   </div>
 
-  <h2>Login Administrador</h2>
+  <!-- BLOCO ADMINISTRADOR -->
+  <div class="card">
+    <!-- LOGIN ou PAINEL -->
+    <div id="loginBox">
+      <div class="logo-bloco">
+        <img src="logo/logo.jpeg" alt="Logo da Escola">
+        <div class="nome-escola">Área Administrativa</div>
+      </div>
 
-  <input type="text" id="user" placeholder="Usuário" />
-  <input type="password" id="pass" placeholder="Senha" />
+      <div class="status-bar">
+        <span class="status-pill">
+          <i class="fa-solid fa-circle"></i>
+          Sistema pronto
+        </span>
+        <span class="mini-hint">Somente equipe autorizada</span>
+      </div>
 
-  <button onclick="login()">Entrar</button>
-</div>
+      <h2><i class="fa-solid fa-user-lock"></i> Login do Administrador</h2>
 
-<!-- PAINEL ADMIN -->
-<div id="painelBox" class="container hidden">
+      <input type="text" id="user" placeholder="Usuário" />
+      <input type="password" id="pass" placeholder="Senha" />
 
-  <div class="logo-bloco">
-    <img src="logo/logo.jpeg" alt="Logo da Escola">
-    <div class="nome-escola">EMEF EZEQUIEL RUIZ II</div>
+      <button onclick="login()">
+        <i class="fa-solid fa-right-to-bracket"></i> Entrar
+      </button>
+    </div>
+
+    <!-- PAINEL ADMIN -->
+    <div id="painelBox" class="hidden">
+      <div class="status-bar">
+        <span class="status-pill">
+          <i class="fa-solid fa-signal"></i>
+          Painel conectado
+        </span>
+        <span class="mini-hint">Defina o texto e envie pelo WhatsApp</span>
+      </div>
+
+      <h2><i class="fa-solid fa-gauge-high"></i> Painel de Alerta</h2>
+
+      <p style="font-size:13px; margin-bottom:6px;">
+        Escreva abaixo a mensagem que será enviada no grupo / lista de transmissão do WhatsApp:
+      </p>
+
+      <label for="mensagem" style="font-size:13px; font-weight:600;">Mensagem do alerta:</label>
+      <textarea id="mensagem" rows="5" placeholder="Ex: Aviso importante: amanhã (25/11) não haverá aula no turno vespertino devido à manutenção na rede elétrica."></textarea>
+
+      <button class="alert-btn pulse" onclick="tocarAlerta()">
+        <i class="fa-solid fa-bullhorn"></i>
+        TOCAR SOM DO ALERTA
+      </button>
+
+      <button style="margin-top:8px;" onclick="copiarMensagem()">
+        <i class="fa-solid fa-copy"></i> Copiar mensagem para WhatsApp
+      </button>
+
+      <button class="btn-secondary" style="margin-top:8px;" onclick="logout()">
+        <i class="fa-solid fa-arrow-left"></i> Sair do painel
+      </button>
+    </div>
   </div>
-
-  <h2>Painel de Alerta</h2>
-
-  <label>Mensagem do alerta:</label>
-  <textarea id="mensagem" rows="4" placeholder="Digite a mensagem aqui..."></textarea>
-
-  <button class="alert-btn" onclick="tocarAlerta()">TOCAR ALERTA</button>
-
-  <button onclick="copiarMensagem()">Copiar mensagem</button>
-
-  <button style="background:#555" onclick="logout()">Sair</button>
 </div>
 
-<!-- SOM FORTE E CURTO (MP3 EMBUTIDO) -->
-<audio id="som/alerta.wav">
-  <source 
-    type="som/alerta.wav"
-    src="data:audio/mpeg;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAWGluZwAAAA8AAAACAAACcQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAAAA8AAAABAAIACgAIAAgACAAIAA
-gACAAIAAwACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIA
-AgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAA
-IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAA//sQZAAAABEAAAACAAIAAgACAAIAAg
-ACAAIAAgACAAIAAgACAAIAAgACAAIAAgCDgAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIA
-AgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAI
-AAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAAIAAA//sQZAAAABMAAAACAAIAAgACAAIAAgACAIA
-AgACAAIAAgACAAIAAgACAAIAQ4ACAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAA
-IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACA
-AIAAgACAAIAAgACAAIAAgACAAIAAgACAAA//uQZAAAAEAAAACAAAIAAgACAAIAAgACAAIAAgACAAIA
-AgACAAIAAgACAAIAAgACgAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAI
-AAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAA
-IAAgACAAIAAgACAD/7EGQAAAATAAAAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgEAAAwA
-CAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAg
-ACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAA
-gACAA//sQZAAAABEAAAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgCDgAIAAgACA
-AIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAC
-AAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAA//Z">
+<!-- ÁUDIO DO ALERTA -->
+<audio id="som/alerta.mp3">
+  <source src="data:audio/mpeg;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAAAA8AAAABAAIACgAIAAgACAAIAAgACAAIAAwACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACIA//sQZAAAABEAAAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgCDgAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAA//sQZAAAABMAAAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAQ4ACAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAA//uQZAAAAEAAAACAAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACgAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD/7EGQAAAATAAAAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgEAAAwACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAAA"
+          type="audio/mpeg">
 </audio>
 
 <script>
@@ -220,7 +487,7 @@ const USER = "ezequiel22";
 const PASS = "481154We@";
 
 function login() {
-  const u = document.getElementById("user").value;
+  const u = document.getElementById("user").value.trim();
   const p = document.getElementById("pass").value;
 
   if (u === USER && p === PASS) {
@@ -240,6 +507,7 @@ function logout() {
 
 function tocarAlerta() {
   const audio = document.getElementById("somAlerta");
+  if (!audio) return;
   audio.currentTime = 0;
   audio.play();
 }
@@ -248,12 +516,29 @@ function copiarMensagem() {
   const texto = document.getElementById("mensagem").value;
 
   if (!texto.trim()) {
-    alert("Escreva uma mensagem primeiro.");
+    alert("Escreva uma mensagem primeiro antes de copiar.");
     return;
   }
 
-  navigator.clipboard.writeText(texto);
-  alert("Mensagem copiada! Agora cole no WhatsApp da comunidade.");
+  if (!navigator.clipboard) {
+    // fallback tosco mas funcional
+    const temp = document.createElement("textarea");
+    temp.value = texto;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    alert("Mensagem copiada! Agora cole no WhatsApp da comunidade.");
+    return;
+  }
+
+  navigator.clipboard.writeText(texto)
+    .then(() => {
+      alert("Mensagem copiada! Agora cole no WhatsApp da comunidade.");
+    })
+    .catch(() => {
+      alert("Erro ao copiar. Tente novamente.");
+    });
 }
 </script>
 
